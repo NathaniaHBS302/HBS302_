@@ -1,0 +1,58 @@
+****************************************************
+* Data Management — From Raw to Ready
+* Author: Nathania Magana
+* Sections:
+* 0. Preliminaries
+* 1. Data Import
+* 2. Data Cleaning
+* 3. Renaming and Labeling Variables
+* 4. Variable Transformationg (Destring ↔ Tostring)
+* 5. Missing Values
+* 6. Variable Construction and Transformation 
+* 7. Merging and Appending Datasets
+* 8. Reshaping Data (Wide ↔ Long)
+* 9. Data Export
+****************************************************
+
+
+****************************************************
+* 0. Preliminaries: Stata Setup
+****************************************************
+
+* Clear all data, variables, and stored results from memory to ensure a clean working environment
+clear
+
+* Allow Stata to handle large matrices (useful for models with many variables or fixed effects)
+set matsize 800
+
+* Run this do-file under Stata 19.5 syntax to ensure reproducibility across software versions
+version 19.5
+
+* Prevent Stata from pausing output with the --more-- prompt so the do-file runs uninterrupted
+set more off
+
+* Require full variable names
+set varabbrev off
+
+* Set project directory
+cd "C:/Users/nathaniam/Downloads"
+
+****************************************************
+* 1. Data Import
+****************************************************
+
+* Import raw data from a CSV file
+* Use this command when the raw data are stored as comma-separated values
+. import excel using "https://docs.google.com/spreadsheets/d/1SxETbL3hwDDhSNaC0kmb0l6-dRH4h0Bz/export?format=xlsx", cellrange(A2:WD25) firstrow clear
+
+****************************************************
+* 2. Data Cleaning
+****************************************************
+
+* Import the dataset first
+* Inspect variable names, data types, and storage formats
+* This helps identify variables imported as strings instead of numeric
+describe
+
+* Review the first few observations for obvious data issues
+list in 1/10
